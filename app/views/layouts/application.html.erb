@@ -10,22 +10,25 @@
   </head>
 
   <body>
-    <div>
+
       <div id="wrapper" class="container_fluid">
+        <% if current_user.present? %>
           <%= render "shared/nav" %>
-          <div id="page-wrapper">
-            <div class="container_fluid">
-              
-              <div class="row">
-                <div class="col-sm-12">
-                  <p class="notice"><%= notice %></p>
-                  <p class="alert"><%= alert %></p>
-                  <%= yield %>
-                </div>
+        <% end %>
+
+        <div id="page-wrapper">
+          <div class="container_fluid">
+
+            <div class="row">
+              <div class="col-sm-12">
+                <p class="notice"><%= notice %></p>
+                <p class="alert"><%= alert %></p>
+                <%= yield %>
               </div>
             </div>
           </div>
+        </div>
       </div>
-    </div>
+
   </body>
 </html>
