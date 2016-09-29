@@ -4,13 +4,28 @@
     <title>PracticeBot</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'main' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div>
+      <div id="wrapper" class="container_fluid">
+          <%= render "shared/nav" %>
+          <div id="page-wrapper">
+            <div class="container_fluid">
+              
+              <div class="row">
+                <div class="col-sm-12">
+                  <p class="notice"><%= notice %></p>
+                  <p class="alert"><%= alert %></p>
+                  <%= yield %>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
   </body>
 </html>
