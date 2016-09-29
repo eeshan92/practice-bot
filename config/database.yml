@@ -20,5 +20,4 @@ test:
   database: db/test
 
 production:
-  <<: *default
   database: db/production
