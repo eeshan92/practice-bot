@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Practices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Location</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @practices.each do |practice| %>
+      <tr>
+        <td><%= practice.location %></td>
+        <td><%= practice.date %></td>
+        <td><%= practice.start %></td>
+        <td><%= practice.end %></td>
+        <td><%= practice.status %></td>
+        <td><%= link_to 'Show', practice %></td>
+        <td><%= link_to 'Edit', edit_practice_path(practice) %></td>
+        <td><%= link_to 'Destroy', practice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Practice', new_practice_path %>

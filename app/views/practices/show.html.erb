@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @practice.location %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @practice.date %>
+</p>
+
+<p>
+  <strong>Start:</strong>
+  <%= @practice.start %>
+</p>
+
+<p>
+  <strong>End:</strong>
+  <%= @practice.end %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @practice.status %>
+</p>
+
+<%= link_to 'Edit', edit_practice_path(@practice) %> |
+<%= link_to 'Back', practices_path %>
