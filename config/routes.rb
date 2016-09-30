@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :locations
+  resources :practices
   get 'users/edit' 
 
   devise_for :users
