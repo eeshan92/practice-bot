@@ -30,12 +30,17 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 
+group :test do
+  gem 'database_cleaner'
+end
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do
