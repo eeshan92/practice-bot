@@ -17,7 +17,7 @@
   <tbody>
     <% @practices.each do |practice| %>
       <tr>
-        <td><%= practice.location %></td>
+        <td><%= practice.location.name %></td>
         <td><%= practice.date %></td>
         <td><%= practice.start %></td>
         <td><%= practice.end %></td>

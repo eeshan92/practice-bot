@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :location %>
-    <%= f.text_field :location %>
+    <%= f.select :location_id, Location.all.map { |l| [ l.name, l.id ] } %>
   </div>
 
   <div class="field">
@@ -33,7 +33,7 @@
 
   <div class="field">
     <%= f.label :status %>
-    <%= f.number_field :status %>
+    <%= f.select :status, Practice.statuses.keys.to_a %>
   </div>
 
   <div class="actions">

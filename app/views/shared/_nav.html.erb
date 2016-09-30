@@ -69,10 +69,14 @@
         <a href="#"><i class="fa fa-fw fa-dashboard"></i>Attendance</a>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i>Practices</a>
+        <%= link_to practices_path do %>
+          <i class="fa fa-fw fa-bar-chart-o"></i>Practices
+        <% end %>
       </li>
       <li>
-        <a href="#"><i class="fa fa-fw fa-table"></i>Tables</a>
+        <%= link_to locations_path do %>
+          <i class="fa fa-fw fa-table"></i>Locations
+        <% end %>
       </li>
       <li>
         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>

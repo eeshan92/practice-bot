@@ -1,28 +1,20 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: [:show, :edit, :update, :destroy]
 
-  # GET /practices
-  # GET /practices.json
   def index
     @practices = Practice.all
   end
 
-  # GET /practices/1
-  # GET /practices/1.json
   def show
   end
 
-  # GET /practices/new
   def new
     @practice = Practice.new
   end
 
-  # GET /practices/1/edit
   def edit
   end
 
-  # POST /practices
-  # POST /practices.json
   def create
     @practice = Practice.new(practice_params)
 
@@ -37,8 +29,6 @@ class PracticesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /practices/1
-  # PATCH/PUT /practices/1.json
   def update
     respond_to do |format|
       if @practice.update(practice_params)
@@ -51,8 +41,6 @@ class PracticesController < ApplicationController
     end
   end
 
-  # DELETE /practices/1
-  # DELETE /practices/1.json
   def destroy
     @practice.destroy
     respond_to do |format|
@@ -62,13 +50,11 @@ class PracticesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_practice
       @practice = Practice.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def practice_params
-      params.require(:practice).permit(:location, :date, :start, :end, :status)
+      params.require(:practice).permit(:location_id, :date, :start, :end, :status)
     end
 end
