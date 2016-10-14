@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       get 'users/me', to: 'users#me'
       resources :users, only: [:me, :index, :create, :show, :update, :destroy]
+      resources :attendances
+      resources :locations, only: [:index, :show]
+      resources :practices
     end
   end
 end

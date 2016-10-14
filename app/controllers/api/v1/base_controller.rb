@@ -1,8 +1,7 @@
 class Api::V1::BaseController < ApplicationController
   acts_as_token_authentication_handler_for User
 
-  def authenticate!
-    render json: { error: '401 Unauthorized!' }, status: 401 unless current_user
-  end
+  protect_from_forgery with: :null_session
 
+  respond_to :json
 end
