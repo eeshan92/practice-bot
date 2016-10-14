@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Token:</strong>
+  <%= @user.authentication_token %>
+</p>
+
+<%= link_to 'Edit', users_edit_path %> |
+<%= link_to 'Back', root_path %>
