@@ -3,8 +3,7 @@ FactoryGirl.define do
 
   factory :practice do
     date { now.to_date }
-    start { now }
+    start { 1.days.from_now }
     status :active
-    location
   end
 end

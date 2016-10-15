@@ -10,6 +10,6 @@ class Practice < ApplicationRecord
   scope :status, ->(status) { where status: status }
   scope :date, ->(date) { where date: date }
   def self.created_after(time)
-    where("created_at > ?", time) if time.present?
+    where("created_at >= ?", time) if time.present?
   end
 end

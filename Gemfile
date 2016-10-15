@@ -33,6 +33,7 @@ gem 'simple_token_authentication', '~> 1.0'
 
 group :test do
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
 end
 
 # Use Capistrano for deployment

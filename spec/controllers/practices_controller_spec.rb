@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe PracticesController, type: :controller do
   describe "POST create" do
     context "with valid attributes" do
-      let(:practice) { create :practice }
+      let(:location) { create :location }
+      let(:practice) { build(:practice, location_id: location.id) }
 
       it "should create a new practice" do
         expect {
@@ -15,7 +16,8 @@ RSpec.describe PracticesController, type: :controller do
 
   describe "PUT update" do
     context "with valid attributes" do
-      let(:practice) { FactoryGirl.create :practice, status: 'cancelled' }
+      let(:location) { create :location }
+      let(:practice) { build :practice, status: 'cancelled', location_id: location.id }
 
       it "should update practice" do
         practice.save
@@ -26,7 +28,8 @@ RSpec.describe PracticesController, type: :controller do
 
   describe "GET show" do
     context "with valid id" do
-      let(:practice) { FactoryGirl.create :practice, status: 'cancelled' }
+      let(:location) { create :location }
+      let(:practice) { create :practice, status: 'cancelled', location_id: location.id }
 
       it "should redirects to practice" do
         get :show, id: practice.id
