@@ -95,7 +95,8 @@ type: :request do
     delete "/api/v1/practices/#{first_practice.id}",
       headers: headers
 
-    expect(response.status).to eq(204)
+    expect(response.status).to eq(200)
+    expect(json["deleted"])
   end
 
   it "DELETE destroy (invalid request test)" do

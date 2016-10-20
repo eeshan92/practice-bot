@@ -3,6 +3,7 @@ class Practice < ApplicationRecord
 
   belongs_to :location
 
+  validates :date, date: { allow_blank: false }
   validates :location_id, :presence => true
 
   enum status: { active: 0, cancelled: 1, pending: 2 }
@@ -12,5 +13,9 @@ class Practice < ApplicationRecord
 
   def self.created_after(time)
     where("created_at >= ?", time) if time.present?
+  end
+
+  def self.after(date)
+    where("date >= ?", date) if date.present?
   end
 end

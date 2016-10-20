@@ -2,7 +2,7 @@ class Api::V1::PracticesController < Api::V1::BaseController
   before_action :set_practice, only: [:show, :edit, :update, :destroy]
 
   def index
-    @practices = Practice.filter(params.slice(:status, :created_after, :date))
+    @practices = Practice.filter(params.slice(:status, :created_after, :date, :after))
     render json: @practices, status: :ok
   end
 
@@ -29,7 +29,7 @@ class Api::V1::PracticesController < Api::V1::BaseController
   end
 
   def destroy
-    @practice.destroy
+    render json: { deleted: @practice.destroy.destroyed? }
   end
 
   private
@@ -40,6 +40,6 @@ class Api::V1::PracticesController < Api::V1::BaseController
     end
 
     def practice_params
-      params.permit(:location_id, :date, :start, :end, :status)
+      params.require(:practice).permit(:location_id, :date, :start, :end, :status, :after)
     end
 end
