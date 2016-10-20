@@ -16,7 +16,7 @@ class Api::V1::PracticesController < Api::V1::BaseController
     if @practice.save
       render json: @practice.to_json
     else
-      render json: { error: @practice.errors.to_json }, status: :unprocessable_entity
+      render json: { error: @practice.errors }, status: :unprocessable_entity
     end
   end
 
