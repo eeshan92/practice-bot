@@ -3,20 +3,20 @@ class Api::V1::PracticesController < Api::V1::BaseController
 
   def index
     @practices = Practice.filter(params.slice(:status, :created_after, :date, :after))
-    render json: @practices, status: :ok
+    render json: @practices.to_json, status: :ok
   end
 
   def show
-    render json: @practice, status: :ok
+    render json: @practice.to_json, status: :ok
   end
 
   def create
     @practice = Practice.new(practice_params)
 
     if @practice.save
-      render json: @practice
+      render json: @practice.to_json
     else
-      render json: { error: @practice.errors }, status: :unprocessable_entity
+      render json: { error: @practice.errors.to_json }, status: :unprocessable_entity
     end
   end
 
