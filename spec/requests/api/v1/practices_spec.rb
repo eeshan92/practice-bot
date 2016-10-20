@@ -44,31 +44,37 @@ type: :request do
   end
 
   it "GET index" do
-    get "/api/v1/practices", headers: headers
+    get "/api/v1/practices",
+      headers: headers
 
-    expect(response).to be_successful
+    expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
     expect(json.count).to eq(1)
   end
 
   it "Get index with params" do
-    get "/api/v1/practices?status=active", headers: headers
+    get "/api/v1/practices?status=active",
+      headers: headers
 
-    expect(response).to be_successful
+    expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
     expect(json).to include(first_practice_output)
   end
 
   it "POST create" do
-    post "/api/v1/practices", valid_payload.to_json, headers
+    post "/api/v1/practices",
+      params: valid_payload.to_json,
+      headers: headers
 
-    expect(response).to be_successful
+    expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
     expect(json["id"]).to be_present
   end
 
   it "POST create (invalid request test)" do
-    post "/api/v1/practices", invalid_payload.to_json, headers
+    post "/api/v1/practices",
+      params: invalid_payload.to_json,
+      headers: headers
 
     expect(response.status).to eq(422)
     expect(response.content_type).to eq("application/json")
@@ -76,17 +82,44 @@ type: :request do
   end
 
   it "PUT update" do
-    put "/api/v1/practices/#{first_practice.id}", { "date" => "2016/10/18" }.to_json, headers
+    put "/api/v1/practices/#{first_practice.id}",
+      params: { "date" => "2016/10/18" }.to_json,
+      headers: headers
 
-    expect(response).to be_successful
+    expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
     expect(json["id"]).to eq(first_practice_output["id"])
   end
 
   it "DELETE destroy" do
-    delete "/api/v1/practices/#{first_practice.id}", headers: headers
+    delete "/api/v1/practices/#{first_practice.id}",
+      headers: headers
 
-    expect(response).to be_successful
     expect(response.status).to eq(204)
+  end
+
+  it "DELETE destroy (invalid request test)" do
+    delete "/api/v1/practices/0",
+      headers: headers
+
+    expect(response.status).to eq(404)
+    expect(json["error"]).to eq("Resource Not Found")
+  end
+
+  it "GET show" do
+    get "/api/v1/practices/#{first_practice.id}",
+      headers: headers
+
+    expect(response.status).to eq(200)
+    expect(response.content_type).to eq("application/json")
+    expect(json).to include(first_practice_output)
+  end
+
+  it "GET show (invalid request test)" do
+    get "/api/v1/practices/0",
+      headers: headers
+
+    expect(response.status).to eq(404)
+    expect(json["error"]).to eq("Resource Not Found")
   end
 end

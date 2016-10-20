@@ -3,7 +3,11 @@ class Api::V1::PracticesController < Api::V1::BaseController
 
   def index
     @practices = Practice.filter(params.slice(:status, :created_after, :date))
-    render json: @practices
+    render json: @practices, status: :ok
+  end
+
+  def show
+    render json: @practice, status: :ok
   end
 
   def create
