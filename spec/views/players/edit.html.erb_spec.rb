@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "players/edit", type: :view do
   before(:each) do
-    @player = assign(:player, Player.create!())
+    @player = create :player
   end
 
   it "renders the edit player form" do

@@ -5,4 +5,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  attr_accessor :invite_code
+
+  validates :invite_code,
+    on: :create,
+    presence: true,
+    inclusion: {
+      in: ["never enough"],
+      message: "Invalid invite code"
+    }
 end
