@@ -2,6 +2,7 @@ class Practice < ApplicationRecord
   include Filterable
 
   belongs_to :location
+  has_many :attendances
 
   validates :date, date: { allow_blank: false }
   validates :location_id, :presence => true
