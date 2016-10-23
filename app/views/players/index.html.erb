@@ -15,7 +15,7 @@
   <tbody>
     <% @players.each do |player| %>
       <tr>
-        <td><%= player.name %></td>
+        <td><%= player.full_name %></td>
         <td><%= player.gender %></td>
         <td><%= player.handle %></td>
         <td><%= link_to 'Show', player %></td>

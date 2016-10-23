@@ -2,7 +2,7 @@ class Api::V1::PlayersController < Api::V1::BaseController
   before_action :set_player, only: [:show, :update, :destroy]
 
   def index
-    @players = Player.filter(params.slice(:name, :gender, :foreign_id, :handle))
+    @players = Player.filter(params.slice(:full_name, :gender, :foreign_id, :handle))
     render json: @players.to_json, status: :ok
   end
 
@@ -22,7 +22,7 @@ class Api::V1::PlayersController < Api::V1::BaseController
 
   def update
     if @player.update(player_params)
-      render json: { id: @player.to_json }, status: :ok
+      render json: { id: @player.id }, status: :ok
     else
       render json: { errors: @player.errors }, status: :unprocessable_entity
     end
@@ -40,6 +40,6 @@ class Api::V1::PlayersController < Api::V1::BaseController
     end
 
     def player_params
-      params.require(:player).permit(:foreign_id, :name, :handle, :gender)
+      params.require(:player).permit(:foreign_id, :full_name, :handle, :gender)
     end
 end

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "API V1 Practices", type: :request do
+RSpec.describe "API v1 players", type: :request do
   let(:user) { create :user }
 
   let(:headers) do
@@ -12,38 +12,37 @@ RSpec.describe "API V1 Practices", type: :request do
     }
   end
 
-  let!(:location) { create :location }
+  let!(:player) { create :player }
 
-  let!(:first_practice) { create(:practice, location_id: location.id) }
-
-  let(:first_practice_output) do
+  let(:first_player_output) do
     {
-      "id" => first_practice.id,
-      "date" => first_practice.date.iso8601,
-      "start" => first_practice.start.iso8601(3),
-      "end" => first_practice.end,
-      "status" => first_practice.status,
-      "created_at" => first_practice.created_at.iso8601(3),
-      "updated_at" => first_practice.created_at.iso8601(3),
-      "location_id" => first_practice.location_id
+      "id" => player.id,
+      "full_name" => player.full_name,
+      "foreign_id" => player.foreign_id,
+      "handle" => player.handle,
+      "gender" => player.gender,
+      "created_at" => player.created_at.iso8601(3),
+      "updated_at" => player.created_at.iso8601(3)
     }
   end
 
   let(:valid_payload) do
     {
-      "location_id" => location.id,
-      "date" => "2016/1/18"
+      "full_name" => "Rachel",
+      "handle" => "rachel",
+      "gender" => "female"
     }
   end
 
   let(:invalid_payload) do
     {
-      "date" => "2016/1/18"
+      "handle" => "rachel",
+      "gender" => "female"
     }
   end
 
   it "GET index" do
-    get "/api/v1/practices",
+    get "/api/v1/players/",
       headers: headers
 
     expect(response.status).to eq(200)
@@ -52,16 +51,16 @@ RSpec.describe "API V1 Practices", type: :request do
   end
 
   it "Get index with params" do
-    get "/api/v1/practices?status=active",
+    get "/api/v1/players?handle=#{player.handle}",
       headers: headers
 
     expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
-    expect(json).to include(first_practice_output)
+    expect(json).to include(first_player_output)
   end
 
   it "POST create" do
-    post "/api/v1/practices",
+    post "/api/v1/players",
       params: valid_payload.to_json,
       headers: headers
 
@@ -71,35 +70,35 @@ RSpec.describe "API V1 Practices", type: :request do
   end
 
   it "POST create (invalid request test)" do
-    post "/api/v1/practices",
+    post "/api/v1/players",
       params: invalid_payload.to_json,
       headers: headers
 
     expect(response.status).to eq(422)
     expect(response.content_type).to eq("application/json")
-    expect(json["error"]["location_id"]).to include("can't be blank")
+    expect(json["errors"]["full_name"]).to include("can't be blank")
   end
 
   it "PUT update" do
-    put "/api/v1/practices/#{first_practice.id}",
-      params: { "date" => "2016/10/18" }.to_json,
+    put "/api/v1/players/#{player.id}",
+      params: { "handle" => "#{player.handle}+updated" }.to_json,
       headers: headers
 
     expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
-    expect(json["id"]).to eq(first_practice_output["id"])
+    expect(json["id"]).to eq(first_player_output["id"])
   end
 
   it "DELETE destroy" do
-    delete "/api/v1/practices/#{first_practice.id}",
+    delete "/api/v1/players/#{player.id}",
       headers: headers
 
     expect(response.status).to eq(200)
-    expect(json["deleted"])
+    expect(json["deleted"]) # boolean response
   end
 
   it "DELETE destroy (invalid request test)" do
-    delete "/api/v1/practices/0",
+    delete "/api/v1/players/0",
       headers: headers
 
     expect(response.status).to eq(404)
@@ -107,16 +106,16 @@ RSpec.describe "API V1 Practices", type: :request do
   end
 
   it "GET show" do
-    get "/api/v1/practices/#{first_practice.id}",
+    get "/api/v1/players/#{player.id}",
       headers: headers
 
     expect(response.status).to eq(200)
     expect(response.content_type).to eq("application/json")
-    expect(json).to include(first_practice_output)
+    expect(json).to include(first_player_output)
   end
 
   it "GET show (invalid request test)" do
-    get "/api/v1/practices/0",
+    get "/api/v1/players/0",
       headers: headers
 
     expect(response.status).to eq(404)

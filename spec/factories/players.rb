@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :player do
-    name "Ee Shan"
+    full_name "Ee Shan"
     handle "eeshan" 
     gender "male"
   end

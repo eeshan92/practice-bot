@@ -56,6 +56,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.fetch(:player, {}).permit(:name, :handle, :gender, :foreign_id)
+      params.fetch(:player, {}).permit(:full_name, :handle, :gender, :foreign_id)
     end
 end
