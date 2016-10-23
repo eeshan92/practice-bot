@@ -10,22 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161023091253) do
+ActiveRecord::Schema.define(version: 20161023140046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "attendances", force: :cascade do |t|
     t.integer  "practice_id"
-    t.integer  "user_id"
     t.string   "comment"
-    t.integer  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "player_id"
     t.index ["player_id"], name: "index_attendances_on_player_id", using: :btree
     t.index ["practice_id"], name: "index_attendances_on_practice_id", using: :btree
-    t.index ["user_id"], name: "index_attendances_on_user_id", using: :btree
   end
 
   create_table "locations", force: :cascade do |t|
@@ -49,9 +47,9 @@ ActiveRecord::Schema.define(version: 20161023091253) do
 
   create_table "practices", force: :cascade do |t|
     t.date     "date"
-    t.integer  "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "status",      default: 0
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "location_id"
     t.datetime "start"
     t.datetime "end"
@@ -79,6 +77,5 @@ ActiveRecord::Schema.define(version: 20161023091253) do
 
   add_foreign_key "attendances", "players"
   add_foreign_key "attendances", "practices"
-  add_foreign_key "attendances", "users"
   add_foreign_key "practices", "locations"
 end
