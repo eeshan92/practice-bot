@@ -9,6 +9,13 @@ class Practice < ApplicationRecord
 
   enum status: { active: 0, cancelled: 1, pending: 2 }
 
+  validates :status,
+    on: [:create, :update],
+    inclusion: {
+      in: ["active", "cancelled", "pending"],
+      message: "Invalid value for status"
+    }
+
   scope :status, ->(status) { where status: status }
   scope :date, ->(date) { where date: date }
 
