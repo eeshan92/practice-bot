@@ -1,5 +1,5 @@
 class Api::V1::PracticesController < Api::V1::BaseController
-  before_action :set_practice, only: [:show, :edit, :update, :destroy]
+  before_action :set_practice, only: [:show, :update, :destroy]
 
   def index
     @practices = Practice.filter(params.slice(:status, :created_after, :date, :after))
@@ -14,7 +14,7 @@ class Api::V1::PracticesController < Api::V1::BaseController
     @practice = Practice.new(practice_params)
 
     if @practice.save
-      render json: @practice.to_json
+      render json: @practice.to_json, status: :ok
     else
       render json: { error: @practice.errors }, status: :unprocessable_entity
     end

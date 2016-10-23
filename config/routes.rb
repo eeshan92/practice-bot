@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       resources :attendances
       resources :locations, only: [:index, :show]
       resources :practices
+      resources :players
     end
   end
 end
