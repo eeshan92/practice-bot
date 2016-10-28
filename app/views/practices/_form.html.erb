@@ -18,17 +18,17 @@
 
   <div class="field">
     <%= f.label :date %>
-    <%= f.date_select :date %>
+    <%= f.date_select :date  %>
   </div>
 
   <div class="field">
     <%= f.label :start %>
-    <%= f.time_select :start %>
+    <%= f.time_select :start, :default => { :hour => 8, :minute => 30 } %>
   </div>
 
   <div class="field">
     <%= f.label :end %>
-    <%= f.time_select :end %>
+    <%= f.time_select :end, :default => { :hour => 12, :minute => 30 } %>
   </div>
 
   <div class="field">
