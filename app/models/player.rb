@@ -14,7 +14,9 @@ class Player < ApplicationRecord
 
   def attendance_record
     attendances = self.attendances
-    percentage = (attendances.select { |a| a.attend? }.count * 100 / attendances.count).to_s(:percantage)
+    if attendances.present?
+      percentage = (attendances.select { |a| a.attend? }.count * 100 / attendances.count).to_s(:percantage)
+    end
   end
 
   def attendance_breakdown
