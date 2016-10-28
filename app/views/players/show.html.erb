@@ -1,4 +1,46 @@
 <p id="notice"><%= notice %></p>
 
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">
+      <%= @player.full_name %>
+    </h2>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Details</h3>
+      </div>
+      <div class="panel-body">
+        <p><%= @player.handle %></p>
+        <p><%= @player.gender %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Overall attendance</h3>
+      </div>
+      <%= pie_chart @attendances %>
+    </div>
+  </div>
+
+  <div class="col-lg-10">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Attendance by the month</h3>
+      </div>
+      <%= column_chart @player.
+                       attendances.
+                       group_by_month { |att| att.practice.date }.
+                       map { |k, v| [k, (v.select { |a| a.attend? }.count * 100.0 / v.count).to_s(:percentage, precision: 0)] }%>
+    </div>
+  </div>
+</div>
+
 <%= link_to 'Edit', edit_player_path(@player) %> |
+<%= link_to 'Delete', @player, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', players_path %>

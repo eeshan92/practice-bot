@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'date_validator'
 
+gem 'chartkick'
+gem 'groupdate'
+
 gem 'simple_token_authentication', '~> 1.0'
 
 group :test do

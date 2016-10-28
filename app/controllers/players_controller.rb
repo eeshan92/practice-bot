@@ -6,6 +6,12 @@ class PlayersController < ApplicationController
   end
 
   def show
+    attendances = @player.attendances
+    @attendances = {
+      "Attend" => attendances.attend.count,
+      "Skip" => attendances.skip.count,
+      "Pending" => attendances.pending.count,
+    }
   end
 
   def new
