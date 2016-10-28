@@ -1,5 +1,6 @@
 class Player < ApplicationRecord
   include Filterable
+  attr_accessor :attendance_record
 
   has_many :attendances
 

@@ -1,8 +1,9 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @players = Player.all
+    @players = Player.order(sort_column + " " + sort_direction)
   end
 
   def show
@@ -57,5 +58,13 @@ class PlayersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
       params.fetch(:player, {}).permit(:full_name, :handle, :gender, :foreign_id)
+    end
+
+    def sort_column
+      Player.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
