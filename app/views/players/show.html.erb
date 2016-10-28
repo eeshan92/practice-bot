@@ -10,11 +10,17 @@
   <div class="col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Details</h3>
+        <h3 class="panel-title" style="display: inline-block">
+          Details
+        </h3>
+          <%= link_to 'Edit', edit_player_path(@player), :style => "float: right; display: inline-block" %>
       </div>
-      <div class="panel-body">
-        <p><%= @player.handle %></p>
-        <p><%= @player.gender %></p>
+      <div class="row panel-body">
+        <%= image_tag("players/freakshow_icon", size: "150x150", style: "display: inline-block") %>
+        <div style="display: inline-block">
+          <p><%= @player.gender %></p>
+          <p>Slack: <%= @player.handle %></p>
+        </div>
       </div>
     </div>
   </div>
@@ -22,10 +28,13 @@
   <div class="col-lg-4">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Overall attendance</h3>
+        <h3 class="panel-title">
+          <i class="fa fa-long-arrow-right fa-fw"></i>
+          Overall Attendance (<%= @player.attendance_record %>%)
+        </h3>
       </div>
       <div class="panel-body">
-        <%= pie_chart @attendances %>
+        <%= pie_chart @player.attendance_breakdown %>
       </div>
     </div>
   </div>
@@ -52,7 +61,3 @@
     </div>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_player_path(@player) %> |
-<%= link_to 'Delete', @player, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Back', players_path %>
