@@ -24,19 +24,31 @@
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Overall attendance</h3>
       </div>
-      <%= pie_chart @attendances %>
+      <div class="panel-body">
+        <%= pie_chart @attendances %>
+      </div>
     </div>
   </div>
 
   <div class="col-lg-10">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Attendance by the month</h3>
+        <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i>Trend</h3>
       </div>
-      <%= column_chart @player.
-                       attendances.
-                       group_by_month { |att| att.practice.date }.
-                       map { |k, v| [k, (v.select { |a| a.attend? }.count * 100.0 / v.count).to_s(:percentage, precision: 0)] }%>
+      <div class="panel-body">
+        <%= column_chart(
+              @player.
+                attendances.
+                group_by_month { |att| att.practice.date }.
+                map do |k, v|
+                  [
+                    k.strftime("%b %y"),
+                    (v.select { |a| a.attend? }.count * 100.0 / v.count).to_s(:percentage)
+                  ]
+                end,
+              xtitle: "Month",
+              ytitle: "\% Attended")%>
+      </div>
     </div>
   </div>
 </div>
