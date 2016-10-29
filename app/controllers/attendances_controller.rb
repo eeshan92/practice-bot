@@ -2,28 +2,20 @@ class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
   helper_method :sort_column, :sort_direction
 
-  # GET /attendances
-  # GET /attendances.json
   def index
     @attendances = Attendance.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
 
-  # GET /attendances/1
-  # GET /attendances/1.json
   def show
   end
 
-  # GET /attendances/new
   def new
     @attendance = Attendance.new
   end
 
-  # GET /attendances/1/edit
   def edit
   end
 
-  # POST /attendances
-  # POST /attendances.json
   def create
     @attendance = Attendance.new(attendance_params)
 
@@ -38,8 +30,6 @@ class AttendancesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /attendances/1
-  # PATCH/PUT /attendances/1.json
   def update
     respond_to do |format|
       if @attendance.update(attendance_params)
@@ -52,8 +42,6 @@ class AttendancesController < ApplicationController
     end
   end
 
-  # DELETE /attendances/1
-  # DELETE /attendances/1.json
   def destroy
     @attendance.destroy
     respond_to do |format|
@@ -63,14 +51,12 @@ class AttendancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_attendance
       @attendance = Attendance.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_params
-      params.require(:attendance).permit(:practice_id, :player_id)
+      params.require(:attendance).permit(:practice_id, :player_id, :status)
     end
 
     def sort_column

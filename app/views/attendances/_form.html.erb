@@ -10,16 +10,20 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :practice %>
-    <%= f.select :practice, Practice.all.map { |p| format_date(p.date) } %>
-  </div>
-
-  <div class="field">
-    <%= f.label :player %>
-    <%= f.select :player_id, Player.all.map { |p| p.full_name } %>
-  </div>
+  
+  <% unless attendance.practice.present? %>
+    <div class="field">
+      <%= f.label :practice %>
+      <%= f.select :practice_id, options_for_select(Practice.all.map { |p| [format_date(p.date), p.id]}) %>
+    </div>
+  <% end %>
+  
+  <% unless attendance.practice.present? %>
+    <div class="field">
+      <%= f.label :player %>
+      <%= f.select :player_id, options_for_select(Player.all.map { |p| [p.full_name, p.id] }) %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :status %>
