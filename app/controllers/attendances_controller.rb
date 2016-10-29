@@ -1,10 +1,11 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.all
+    @attendances = Attendance.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
 
   # GET /attendances/1
@@ -70,5 +71,13 @@ class AttendancesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendance_params
       params.require(:attendance).permit(:practice_id, :player_id)
+    end
+
+    def sort_column
+      Attendance.column_names.include?(params[:sort]) ? params[:sort] : "practice_id"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end

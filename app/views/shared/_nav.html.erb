@@ -76,13 +76,17 @@
         <% end %>
       </li>
       <li>
-        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Locations <i class="fa fa-fw fa-caret-down"></i></a>
+        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Attendance <i class="fa fa-fw fa-caret-down"></i></a>
           <ul id="demo" class="collapse">
             <li>
-              <a href="#">Dropdown Item</a>
+              <%= link_to attendances_path do %>
+                <i class="fa fa-fw fa-table"></i>List
+              <% end %>
             </li>
             <li>
-              <a href="#">Dropdown Item</a>
+              <%= link_to attendances_path do %>
+                <i class="fa fa-fw fa-bar-chart-o"></i>Charts
+              <% end %>
             </li>
           </ul>
       </li>

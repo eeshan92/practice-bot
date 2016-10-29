@@ -32,7 +32,9 @@ RSpec.describe "API V1 Practices", type: :request do
   let(:valid_payload) do
     {
       "location_id" => location.id,
-      "date" => "2016/1/18"
+      "date" => "2016/1/18",
+      "start" => Time.now,
+      "end" => 1.hour.from_now
     }
   end
 

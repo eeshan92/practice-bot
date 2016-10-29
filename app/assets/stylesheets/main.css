@@ -216,3 +216,15 @@ ul.alert-dropdown {
 .panel-yellow > a:hover {
   color: #df8a13;
 }
+
+.practice-active {
+  color: "green";
+}
+
+.practice-pending {
+  color: "orange";
+}
+
+.practice-cancelled {
+  color: "red";
+}

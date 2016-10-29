@@ -4,7 +4,8 @@ class Practice < ApplicationRecord
   belongs_to :location
   has_many :attendances
 
-  validates :date, date: { allow_blank: false }
+  validates :start, :presence => true
+  validates :date, date: { allow_blank: false }, :uniqueness => true
   validates :location_id, :presence => true
 
   enum status: { active: 0, cancelled: 1, pending: 2 }

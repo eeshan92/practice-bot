@@ -21,7 +21,12 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <p class="alert"><%= alert %></p>
+                <% if alert.present? %>
+                  <p class="alert"><%= alert %></p>
+                <% end %>
+                <% if notice.present? %>
+                  <p id="notice"><%= notice %></p>
+                <% end %>
                 <%= yield %>
               </div>
             </div>

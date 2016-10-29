@@ -1,13 +1,16 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Practice:</strong>
-  <%= @attendance.practice %>
+  <%= @attendance.practice.date %>
 </p>
 
 <p>
   <strong>Player:</strong>
-  <%= @attendance.user %>
+  <%= @attendance.player.full_name %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @attendance.status %>
 </p>
 
 <%= link_to 'Edit', edit_attendance_path(@attendance) %> |

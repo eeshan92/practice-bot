@@ -1,8 +1,9 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: [:show, :edit, :update, :destroy]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @practices = Practice.all
+    @practices = Practice.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
 
   def show
@@ -56,5 +57,13 @@ class PracticesController < ApplicationController
 
     def practice_params
       params.require(:practice).permit(:location_id, :date, :start, :end, :status)
+    end
+
+    def sort_column
+      Practice.column_names.include?(params[:sort]) ? params[:sort] : "date"
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
     end
 end
