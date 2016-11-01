@@ -40,6 +40,6 @@ class Api::V1::PlayersController < Api::V1::BaseController
     end
 
     def player_params
-      params.require(:player).permit(:foreign_id, :full_name, :handle, :gender)
+      params.require(:player).permit(:foreign_id, :full_name, :handle, :gender, :phone, :email, :NRIC)
     end
 end

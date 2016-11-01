@@ -12,6 +12,9 @@ class Player < ApplicationRecord
   scope :handle, ->(handle) { where handle: handle }
   scope :foreign_id, ->(id) { where foreign_id: id }
   scope :gender, ->(gender) { where gender: gender }
+  scope :phone, ->(phone) { where phone: phone }
+  scope :NRIC, ->(nric) { where NRIC: nric }
+  scope :email, ->(email) { where email: email}
 
   def attendance_record
     attendances = self.attendances
