@@ -52,7 +52,7 @@ class PlayersController < ApplicationController
 
   private
     def set_player
-      @player = Player.find(params[:id])
+      @player = Player.includes(:attendances => :practice).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
