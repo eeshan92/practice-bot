@@ -36,7 +36,14 @@ type: :request do
       "status" => attendance.status,
       "created_at" => attendance.created_at.iso8601(3),
       "updated_at" => attendance.updated_at.iso8601(3),
-      "player_id" => attendance.player_id
+      "player_id" => attendance.player_id,
+      "player" => {
+        "full_name" => "Ee Shan",
+        "gender" => "male"
+      },
+      "practice" => {
+        "date"=>"2016-11-02"
+      }
     }
   end
 
