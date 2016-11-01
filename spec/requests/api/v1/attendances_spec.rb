@@ -38,11 +38,11 @@ type: :request do
       "updated_at" => attendance.updated_at.iso8601(3),
       "player_id" => attendance.player_id,
       "player" => {
-        "full_name" => "Ee Shan",
-        "gender" => "male"
+        "full_name" => player.full_name,
+        "gender" => player.gender
       },
       "practice" => {
-        "date"=>"2016-11-02"
+        "date" => practice.date
       }
     }
   end

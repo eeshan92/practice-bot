@@ -22,7 +22,10 @@ RSpec.describe "API v1 players", type: :request do
       "handle" => player.handle,
       "gender" => player.gender,
       "created_at" => player.created_at.iso8601(3),
-      "updated_at" => player.created_at.iso8601(3)
+      "updated_at" => player.created_at.iso8601(3),
+      "email" => player.email,
+      "phone" => player.phone,
+      "NRIC" => player.NRIC
     }
   end
 
