@@ -2,7 +2,8 @@ class Api::V1::AttendancesController < Api::V1::BaseController
   before_action :set_attendance, only: [:show, :update, :destroy]
 
   def index
-    @attendances = Attendance.filter(params.slice(:practice_id, :player_id, :status))
+    @attendances = Attendance.includes(:player, :practice).filter(params.slice(:practice_id, :player_id, :status))
+
     render json: @attendances.to_json, status: :ok
   end
 

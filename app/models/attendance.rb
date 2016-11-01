@@ -11,4 +11,16 @@ class Attendance < ApplicationRecord
   scope :status, ->(status) { where(status: Attendance.statuses[status]) }
   scope :practice_id, ->(id) { where practice_id: id }
   scope :player_id, ->(id) { where player_id: id }
+
+  def as_json(options={})
+      super(:include => {
+              :player => {
+                :only => [:full_name, :gender]
+              },
+              :practice => {
+                :only => [:date]
+              }
+            }
+      )
+    end
 end
