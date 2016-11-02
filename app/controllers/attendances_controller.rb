@@ -57,7 +57,7 @@ class AttendancesController < ApplicationController
     end
 
     def attendance_params
-      params.require(:attendance).permit(:practice_id, :player_id, :status)
+      params.require(:attendance).permit(:practice_id, :player_id, :status, :comment)
     end
 
     def sort_column

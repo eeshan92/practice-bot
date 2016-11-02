@@ -41,6 +41,6 @@ class Api::V1::AttendancesController < Api::V1::BaseController
     end
 
     def attendance_params
-      params.require(:attendance).permit(:practice_id, :player_id, :status)
+      params.require(:attendance).permit(:practice_id, :player_id, :status, :comment)
     end
 end
