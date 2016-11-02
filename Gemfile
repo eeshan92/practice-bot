@@ -38,6 +38,8 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'slack-ruby-client'
 gem 'faye-websocket'
 
+gem 'delayed_job_active_record'
+
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
