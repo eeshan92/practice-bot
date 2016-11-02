@@ -1,10 +1,10 @@
 namespace :slack_bot do
-  desc "TODO"
-  task start: :environment do
+  desc "Start Freakbot"
+  task :start => :environment do
     require 'slack-ruby-client'
 
     Slack.configure do |config|
-      config.token = ENV["SLACK_API_TOKEN"]
+      config.token = "xoxb-99605050691-nvMbyr2hKFB5YOsg5VQbuyMZ"
       config.logger = Logger.new(STDOUT)
       config.logger.level = Logger::INFO
       fail 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
@@ -44,9 +44,4 @@ namespace :slack_bot do
 
     client.start!
   end
-
-  desc "TODO"
-  task stop: :environment do
-  end
-
 end
