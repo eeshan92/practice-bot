@@ -6,7 +6,7 @@ class Attendance < ApplicationRecord
 
   validates :status, :practice_id, :player_id, :presence => true
 
-  enum status: { attend: 0, skip: 1, pending: 2 }
+  enum status: { attend: 0, skip: 1, pending: 2, late: 3, other: 4 }
 
   scope :status, ->(status) { where(status: Attendance.statuses[status]) }
   scope :practice_id, ->(id) { where practice_id: id }
