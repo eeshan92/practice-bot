@@ -3,7 +3,9 @@ class PlayersController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @players = Player.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    @players = Player.includes(:attendances).
+                      order(sort_column + " " + sort_direction).
+                      paginate(:page => params[:page])
   end
 
   def show

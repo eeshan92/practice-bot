@@ -3,7 +3,8 @@ class AttendancesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @attendances = Attendance.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    @attendances = Attendance.includes(:player, :practice).
+                              order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
 
   def show

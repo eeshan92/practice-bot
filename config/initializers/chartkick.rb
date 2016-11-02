@@ -1,6 +1,6 @@
 Chartkick.options = {
   height: "300px",
-  colors: ["green", "#999", "light-blue"],
+  colors: ["#b9cd75", "black", "#999"],
   title: {
     display: true
   }

@@ -42,7 +42,7 @@ type: :request do
         "gender" => player.gender
       },
       "practice" => {
-        "date" => practice.date
+        "date" => practice.date.iso8601
       }
     }
   end

@@ -3,7 +3,8 @@ class PracticesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @practices = Practice.order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+    @practices = Practice.includes(:location).
+                          order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
 
   def show

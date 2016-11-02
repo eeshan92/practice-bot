@@ -16,19 +16,21 @@ class Player < ApplicationRecord
   scope :NRIC, ->(nric) { where NRIC: nric }
   scope :email, ->(email) { where email: email}
 
+  def attendance_list
+    self.attendances
+  end
+
   def attendance_record
-    attendances = self.attendances
-    if attendances.present?
-      percentage = (attendances.select { |a| a.attend? }.count * 100 / attendances.count).to_s(:percantage)
+    if attendance_list.present?
+      percentage = (attendance_list.select { |a| a.attend? }.count * 100 / attendance_list.count).to_s(:percantage)
     end
   end
 
   def attendance_breakdown
-    attendances = self.attendances
     {
-      "Attend" => attendances.attend.count,
-      "Skip" => attendances.skip.count,
-      "Pending" => attendances.pending.count,
+      "Attend" => attendance_list.attend.count,
+      "Skip" => attendance_list.skip.count,
+      "Pending" => attendance_list.pending.count,
     }
   end
 end
