@@ -22,7 +22,9 @@ class Player < ApplicationRecord
 
   def attendance_record
     if attendance_list.present?
-      percentage = (attendance_list.select { |a| a.attend? }.count * 100 / attendance_list.count).to_s(:percantage)
+      percentage = (attendance_list.select do |a|
+        a.attend? || a.late? || a.other?
+      end.count * 100 / attendance_list.count).to_s(:percantage)
     end
   end
 
@@ -31,6 +33,8 @@ class Player < ApplicationRecord
       "Attend" => attendance_list.attend.count,
       "Skip" => attendance_list.skip.count,
       "Pending" => attendance_list.pending.count,
+      "Late" => attendance_list.late.count,
+      "Others" => attendance_list.other.count
     }
   end
 end
