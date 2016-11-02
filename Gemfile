@@ -35,6 +35,9 @@ gem 'will_paginate', '~> 3.1.0'
 
 gem 'simple_token_authentication', '~> 1.0'
 
+gem 'slack-ruby-client'
+gem 'faye-websocket'
+
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'
