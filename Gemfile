@@ -39,6 +39,7 @@ gem 'slack-ruby-client'
 gem 'faye-websocket'
 
 gem 'delayed_job_active_record'
+gem 'daemons'
 
 group :test do
   gem 'database_cleaner'
