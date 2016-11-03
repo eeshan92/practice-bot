@@ -1,0 +1,22 @@
+{
+  "name": "practicebot",
+  "version": "1.0.0",
+  "description": "attendance tracking",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eeshan92/practice-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eeshan92/practice-bot/issues"
+  },
+  "homepage": "https://github.com/eeshan92/practice-bot#readme"
+}

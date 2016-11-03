@@ -4,7 +4,7 @@ namespace :slack_bot do
     require 'slack-ruby-client'
 
     Slack.configure do |config|
-      config.token = "xoxb-99605050691-T3LM2gC07NiX4um9CtH9kzOE"
+      config.token = ENV["SLACK_API_TOKEN"]
       config.logger = Logger.new(STDOUT)
       config.logger.level = Logger::INFO
       fail 'Missing ENV[SLACK_API_TOKEN]!' unless config.token
