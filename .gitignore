@@ -21,4 +21,4 @@
 .byebug_history
 
 # Ignore config environment variables
-env_localhost
+/config/local_env.yml
