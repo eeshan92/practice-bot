@@ -41,6 +41,9 @@ gem 'faye-websocket'
 gem 'delayed_job_active_record'
 gem 'daemons'
 
+# REST client
+gem 'rest-client'
+
 group :test do
   gem 'database_cleaner'
   gem 'rails-controller-testing'

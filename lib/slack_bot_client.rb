@@ -51,6 +51,20 @@ class SlackBotClient
             }
           ]
         })
+    when /list/ then
+      practices = Practice.public_send(:after, Date.today).order("date asc").take(2)
+      client.web_client.chat_postMessage(
+        {
+          channel: data.channel,
+          text: "hello <@#{data.user}>!",
+          as_user: true,
+          attachments: practices.map do |practice|
+            {
+              color: COLORS["fs_green"],
+              title: practice.date
+            }
+          end
+        })
     when 'hello' then
       client.web_client.chat_postMessage(
         {
