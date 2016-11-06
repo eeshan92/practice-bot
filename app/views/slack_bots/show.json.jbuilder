@@ -1,0 +1,1 @@
+json.partial! "slack_bots/slack_bot", slack_bot: @slack_bot

@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :players
-  resources :attendances
-  resources :locations
+  resources :players, :locations
+
   resources :practices
+  resources :attendances
 
   get 'users/edit'
   get 'users/show'
@@ -10,8 +10,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "home#index"
-  post "/authorize_bot", to: "home#authorize_bot"
-  get "/callback", to: "home#callback"
 
   #api
   namespace :api do
@@ -23,5 +21,11 @@ Rails.application.routes.draw do
       resources :practices
       resources :players
     end
+  end
+
+  resources :slack_bots, only: [:index]
+  namespace :slack_bots do
+    get 'authorize'
+    get 'callback'
   end
 end

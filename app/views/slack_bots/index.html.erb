@@ -1,0 +1,14 @@
+<h1>Slack Bot</h1>
+
+<% if @slack_bot.present? %>
+  <div>
+    <p>
+      Slack bot token: <%= @slack_bot.access_token %>
+    </p>
+  </div>
+<% else %>
+  <div>
+    <p>You have not installed Slack Bot for your team yet!</p>
+    <%= link_to "Add Slack Bot", slack_bots_authorize_path, :class => "btn btn-primary" %>
+  </div>
+<% end %>

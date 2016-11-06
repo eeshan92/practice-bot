@@ -25,4 +25,8 @@ class ApplicationController < ActionController::Base
     uri.query = params.to_query
     uri.to_s
   end
+
+  def json(response)
+    JSON.parse(response.body)
+  end
 end

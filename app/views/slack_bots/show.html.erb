@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Access token:</strong>
+  <%= @slack_bot.access_token %>
+</p>
+
+<p>
+  <strong>Slack team name:</strong>
+  <%= @slack_bot.slack_team_name %>
+</p>
+
+<p>
+  <strong>Slack team:</strong>
+  <%= @slack_bot.slack_team_id %>
+</p>
+
+<p>
+  <strong>Bot user:</strong>
+  <%= @slack_bot.bot_user_id %>
+</p>
+
+<p>
+  <strong>Bot access token:</strong>
+  <%= @slack_bot.bot_access_token %>
+</p>
+
+<%= link_to 'Edit', edit_slack_bot_path(@slack_bot) %> |
+<%= link_to 'Back', slack_bots_path %>

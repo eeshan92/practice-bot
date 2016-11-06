@@ -1,0 +1,1 @@
+json.array! @slack_bots, partial: 'slack_bots/slack_bot', as: :slack_bot
