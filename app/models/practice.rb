@@ -20,4 +20,13 @@ class Practice < ApplicationRecord
   def self.after(date)
     where("date >= ?", date) if date.present?
   end
+
+  def as_json(options={})
+      super(:include => {
+              :location => {
+                :only => [:address, :name]
+              }
+            }
+      )
+  end
 end

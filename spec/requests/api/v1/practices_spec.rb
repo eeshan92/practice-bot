@@ -25,7 +25,11 @@ RSpec.describe "API V1 Practices", type: :request do
       "status" => first_practice.status,
       "created_at" => first_practice.created_at.iso8601(3),
       "updated_at" => first_practice.created_at.iso8601(3),
-      "location_id" => first_practice.location_id
+      "location_id" => first_practice.location_id,
+      "location"=> {
+        "address" => location.address,
+        "name" => location.name
+      }
     }
   end
 
