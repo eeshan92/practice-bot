@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PracticesController, type: :controller do
+  let(:player) { create :player }
+
   describe "POST create" do
     context "with valid attributes" do
       let(:location) { create :location }
@@ -30,10 +32,12 @@ RSpec.describe PracticesController, type: :controller do
     context "with valid id" do
       let(:location) { create :location }
       let(:practice) { create :practice, status: 'cancelled', location_id: location.id }
+      let(:attendee) { create :attendance, player_id: player.id, practice_id: practice.id  }
 
       it "should redirects to practice" do
         get :show, id: practice.id
         expect(response).to be_successful
+        expect(assigns(:attendees)).to eq([attendee])
       end
     end
   end
