@@ -29,4 +29,8 @@ class Practice < ApplicationRecord
             }
       )
   end
+
+  def attendees
+    self.attendances.includes(:player)
+  end
 end

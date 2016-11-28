@@ -1,5 +1,6 @@
 class PracticesController < ApplicationController
   before_action :set_practice, only: [:show, :edit, :update, :destroy]
+  before_action :set_attendees, only: [:show]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -56,12 +57,18 @@ class PracticesController < ApplicationController
       @practice = Practice.find(params[:id])
     end
 
+    def set_attendees
+      @attendees = @practice.attendees.
+                             order(sort_column + " " + sort_direction).
+                             paginate(:page => params[:page])
+    end
+
     def practice_params
       params.require(:practice).permit(:location_id, :date, :start, :end, :status)
     end
 
     def sort_column
-      Practice.column_names.include?(params[:sort]) ? params[:sort] : "date"
+      Practice.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
 
     def sort_direction

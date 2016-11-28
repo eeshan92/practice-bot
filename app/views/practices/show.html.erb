@@ -1,27 +1,62 @@
-<p>
-  <strong>Location:</strong>
-  <%= @practice.location.name %>
-</p>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title" style="display: inline-block">
+          Details
+        </h3>
+          <%= link_to 'Edit', edit_practice_path(@practice), :style => "float: right; display: inline-block" %>
+      </div>
+      <div class="row panel-body">
+        <p>
+          <strong>Location:</strong>
+          <%= @practice.location.name %>
+        </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @practice.date %>
-</p>
+        <p>
+          <strong>Date:</strong>
+          <%= @practice.date %>
 
-<p>
-  <strong>Start:</strong>
-  <%= @practice.start %>
-</p>
+        <p>
+          <strong>Start:</strong>
+          <%= format_by_time(@practice.start) %>
+        </p>
 
-<p>
-  <strong>End:</strong>
-  <%= @practice.end %>
-</p>
+        <p>
+          <strong>End:</strong>
+          <%= format_by_time(@practice.end) %>
+        </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @practice.status %>
-</p>
+        <p>
+          <strong>Status:</strong>
+          <%= @practice.status %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_practice_path(@practice) %> |
-<%= link_to 'Back', practices_path %>
+<div class="row">
+  <div class="col-lg-6">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th><%= sortable "player_id", "Player" %></th>
+            <th><%= sortable "status", "Status" %></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @attendees.each do |attendee| %>
+            <tr>
+              <td><%= attendee.player.full_name %></td>
+              <td><%= attendee.status %></td>
+              <td><%= link_to 'Edit', edit_attendance_path(attendee) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+</div>
