@@ -15,7 +15,7 @@ namespace :attendance do
 
     Player.all.each do |player|
       practices.each do |practice|
-        unless practice.attendances.find_by player: player
+        unless practice.attendances.select { |att| att.player_id == player }.blank?
           new_attendances << Attendance.create({
                                                 "player_id" => player.id,
                                                 "practice_id" => practice.id,
