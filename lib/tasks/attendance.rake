@@ -11,17 +11,26 @@ namespace :attendance do
     end
 
     practices = Practice.includes(:attendances).where("date >= ?", since)
+    new_attendances = []
 
     Player.all.each do |player|
       practices.each do |practice|
         unless practice.attendances.find_by player: player
-          puts Attendance.create({
-                              "player_id" => player.id,
-                              "practice_id" => practice.id,
-                              "status" => "pending"
-                            })
+          new_attendances << Attendance.create({
+                                                "player_id" => player.id,
+                                                "practice_id" => practice.id,
+                                                "status" => "pending"
+                                              })
         end
       end
     end
+
+    new_attendances.group_by { |a| a.player.full_name }.
+                    each do |player, attendances|
+                      puts "Added attendances for \"#{player}\""
+                      attendances.sort_by { |att| att.practice.date }.
+                                  each { |att| puts att.practice.date }
+                      puts ""
+                    end
   end
 end
