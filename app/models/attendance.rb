@@ -15,7 +15,7 @@ class Attendance < ApplicationRecord
   def as_json(options={})
       super(:include => {
               :player => {
-                :only => [:full_name, :gender]
+                :only => [:handle, :full_name, :gender]
               },
               :practice => {
                 :only => [:date]
