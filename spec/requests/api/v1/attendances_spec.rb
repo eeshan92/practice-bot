@@ -39,7 +39,8 @@ type: :request do
       "player_id" => attendance.player_id,
       "player" => {
         "full_name" => player.full_name,
-        "gender" => player.gender
+        "gender" => player.gender,
+        "handle" => player.handle
       },
       "practice" => {
         "date" => practice.date.iso8601
