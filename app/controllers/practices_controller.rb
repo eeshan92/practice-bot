@@ -59,6 +59,7 @@ class PracticesController < ApplicationController
 
     def set_attendees
       @attendees = @practice.attendees.
+                             includes(:player).
                              order(sort_column + " " + sort_direction).
                              paginate(:page => params[:page])
     end

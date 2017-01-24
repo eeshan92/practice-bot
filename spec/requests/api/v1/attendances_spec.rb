@@ -37,6 +37,7 @@ type: :request do
       "created_at" => attendance.created_at.iso8601(3),
       "updated_at" => attendance.updated_at.iso8601(3),
       "player_id" => attendance.player_id,
+      "confirm"=>attendance.confirm,
       "player" => {
         "full_name" => player.full_name,
         "gender" => player.gender,

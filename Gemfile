@@ -28,7 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'date_validator'
-
+gem 'best_in_place', '~> 3.0.1'
 gem 'chartkick'
 gem 'groupdate'
 gem 'will_paginate', '~> 3.1.0'

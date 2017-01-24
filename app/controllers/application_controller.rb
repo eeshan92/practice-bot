@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper DateHelper
 
-  WillPaginate.per_page = 10
+  WillPaginate.per_page = 20
 
   protected
 
