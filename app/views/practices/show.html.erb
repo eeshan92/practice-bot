@@ -15,7 +15,7 @@
 
         <p>
           <strong>Date:</strong>
-          <%= best_in_place @practice, :date %>
+          <%= @practice.date %>
 
         <p>
           <strong>Start:</strong>
@@ -39,6 +39,20 @@
 <div class="row">
   <div class="col-lg-6">
 
+    <div class="filter-options">
+      <%= link_to 'Attending', params.permit(:status, :direction, :id, :sort).merge(:status => "attend"),
+          :class => "btn btn-success btn-sm" %>
+      <%= link_to 'Late', params.permit(:status, :direction, :id, :sort).merge(:status => "late"),
+          :class => "btn btn-warning btn-sm" %>
+      <%= link_to 'Others', params.permit(:status, :direction, :id, :sort).merge(:status => "other"),
+          :class => "btn btn-primary btn-sm" %>
+      <%= link_to 'Pending', params.permit(:status, :direction, :id, :sort).merge(:status => "pending"),
+          :class => "btn btn-info btn-sm" %>
+      <%= link_to 'Skipping', params.permit(:status, :direction, :id, :sort).merge(:status => "skip"),
+          :class => "btn btn-danger btn-sm" %>
+      <%= link_to 'All', practice_path(@practice), :class => "btn btn-success btn-sm" %>
+    </div>
+
     <span>
       <%= will_paginate @attendees %>
     </span>
@@ -47,7 +61,7 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
-            <th><%= sortable "player.full_name", "Player" %></th>
+            <th><%= sortable "players.full_name", "Player" %></th>
             <th><%= sortable "status", "Status" %></th>
             <th><%= sortable "confirm", "Confirm" %></th>
           </tr>

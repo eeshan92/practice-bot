@@ -5,7 +5,8 @@ class PracticesController < ApplicationController
 
   def index
     @practices = Practice.includes(:location).
-                          order(sort_column + " " + sort_direction).paginate(:page => params[:page])
+                          order(sort_column + " " + sort_direction).
+                          paginate(:page => params[:page])
   end
 
   def show
@@ -59,7 +60,7 @@ class PracticesController < ApplicationController
 
     def set_attendees
       @attendees = @practice.attendees.
-                             includes(:player).
+                             filter(params.slice(:status, :confirm)).
                              order(sort_column + " " + sort_direction).
                              paginate(:page => params[:page])
     end

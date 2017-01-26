@@ -228,3 +228,11 @@ ul.alert-dropdown {
 .practice-cancelled {
   color: "red";
 }
+
+a:visited.btn {
+  color: #fff;
+}
+
+.filter-options {
+  margin: 10px;
+}
