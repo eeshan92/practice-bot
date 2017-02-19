@@ -24,7 +24,7 @@ class Player < ApplicationRecord
     if attendance_list.present?
       percentage = (attendance_list.select do |a|
         a.attend? || a.late? || a.other?
-      end.count * 100 / attendance_list.count).to_s(:percantage)
+      end.count * 100 / attendance_list.count).to_s(:percentage, precision: 1)
     end
   end
 

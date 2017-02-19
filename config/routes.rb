@@ -28,4 +28,6 @@ Rails.application.routes.draw do
     get 'authorize'
     get 'callback'
   end
+
+  resources :report, only: :index
 end

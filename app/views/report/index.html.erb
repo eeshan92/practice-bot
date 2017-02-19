@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-lg-12">
+    <h2 class="page-header">
+      Attendance Record
+    </h2>
+  </div>
+
+  <div class="filter-options">
+    <%= link_to 'Male', params.permit(:status, :direction, :id, :sort).merge(:gender => "male"),
+        :class => "btn btn-success btn-sm" %>
+    <%= link_to 'Female', params.permit(:status, :direction, :id, :sort).merge(:gender => "female"),
+        :class => "btn btn-info btn-sm" %>
+    <%= link_to 'All', params.permit(:status, :direction, :id, :sort).merge(:gender => ""),
+        :class => "btn btn-warning btn-sm" %>
+  </div>
+  
+  <div class="col-lg-8">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th><%= sortable "full_name", "Name" %></th>
+            <th><%= sortable "handle", "Handle" %></th>
+            <th><%= sortable "gender", "Gender" %></th>
+            <th>% Attendance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @players.each do |player| %>
+            <tr>
+              <td><%= link_to player.full_name, player %>
+              <td><%= player.handle %></td>
+              <td><%= player.gender %></td>
+              <td><%= player.attendance_record %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <span class="col-lg-8">
+    <%= will_paginate @players %>
+  </span>
+</div>
