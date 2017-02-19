@@ -20,7 +20,6 @@
         <thead>
           <tr>
             <th><%= sortable "full_name", "Name" %></th>
-            <th><%= sortable "handle", "Handle" %></th>
             <th>% Attendance</th>
           </tr>
         </thead>
@@ -28,7 +27,6 @@
           <% @players.each do |player| %>
             <tr>
               <td><%= player.full_name %>
-              <td><%= player.handle %></td>
               <td><%= player.attendance_record(@after) %></td>
             </tr>
           <% end %>
