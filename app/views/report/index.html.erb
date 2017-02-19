@@ -6,11 +6,11 @@
   </div>
 
   <div class="filter-options">
-    <%= link_to 'Male', params.permit(:status, :direction, :id, :sort).merge(:gender => "male"),
+    <%= link_to 'Male', params.permit(:direction, :id, :sort, :after, :gender).merge(:gender => "male"),
         :class => "btn btn-success btn-sm" %>
-    <%= link_to 'Female', params.permit(:status, :direction, :id, :sort).merge(:gender => "female"),
+    <%= link_to 'Female', params.permit(:direction, :id, :sort, :after, :gender).merge(:gender => "female"),
         :class => "btn btn-info btn-sm" %>
-    <%= link_to 'All', params.permit(:status, :direction, :id, :sort).merge(:gender => ""),
+    <%= link_to 'All', params.permit(:direction, :id, :sort, :after, :gender).merge(:gender => ""),
         :class => "btn btn-warning btn-sm" %>
   </div>
   
@@ -28,10 +28,10 @@
         <tbody>
           <% @players.each do |player| %>
             <tr>
-              <td><%= link_to player.full_name, player %>
+              <td><%= player.full_name %>
               <td><%= player.handle %></td>
               <td><%= player.gender %></td>
-              <td><%= player.attendance_record %></td>
+              <td><%= player.attendance_record(@after) %></td>
             </tr>
           <% end %>
         </tbody>

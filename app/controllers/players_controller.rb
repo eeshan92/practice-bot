@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+  before_action :set_after, only: [:index, :show]
   helper_method :sort_column, :sort_direction
 
   def index
@@ -68,5 +69,9 @@ class PlayersController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def set_after
+      @after = (params[:after] || Time.now.beginning_of_year)
     end
 end

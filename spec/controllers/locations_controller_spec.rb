@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe LocationsController, type: :controller do
   describe "Get index" do
-    let(:location) { create :location }
+    let(:valid_session) { skip("add valid session creds") }
 
-    it "renders the index template" do
-      get :index
-      expect(response.status).to eq(200)
+    it "assigns all locations as @locations" do
+      location = create(:location)
+      get :index, params: {}, session: valid_session
+      expect(assigns(:locations)).to eq([location])
     end
   end
 end

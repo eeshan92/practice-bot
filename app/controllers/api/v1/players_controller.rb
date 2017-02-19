@@ -1,5 +1,6 @@
 class Api::V1::PlayersController < Api::V1::BaseController
   before_action :set_player, only: [:show, :update, :destroy]
+  before_action :set_after, only: [:index, :show]
 
   def index
     @players = Player.filter(params.slice(:full_name, :gender, :foreign_id, :handle))
@@ -41,5 +42,9 @@ class Api::V1::PlayersController < Api::V1::BaseController
 
     def player_params
       params.require(:player).permit(:foreign_id, :full_name, :handle, :gender, :phone, :email, :NRIC)
+    end
+
+    def set_after
+      @after = (params[:after] || Time.now.beginning_of_year)
     end
 end

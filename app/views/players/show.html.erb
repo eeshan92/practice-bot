@@ -28,11 +28,11 @@
       <div class="panel-heading">
         <h3 class="panel-title">
           <i class="fa fa-long-arrow-right fa-fw"></i>
-          Overall Attendance (<%= @player.attendance_record %>%)
+          Overall Attendance (<%= @player.attendance_record(@after) %>)
         </h3>
       </div>
       <div class="panel-body">
-        <%= pie_chart @player.attendance_breakdown %>
+        <%= pie_chart @player.attendance_breakdown(@after) %>
       </div>
     </div>
   </div>

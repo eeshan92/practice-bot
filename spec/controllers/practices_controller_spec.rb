@@ -32,10 +32,12 @@ RSpec.describe PracticesController, type: :controller do
     context "with valid id" do
       let(:location) { create :location }
       let(:practice) { create :practice, status: 'cancelled', location_id: location.id }
-      let(:attendee) { create :attendance, player_id: player.id, practice_id: practice.id  }
+      let(:attendee) { create :attendance, player_id: player.id, practice_id: practice.id }
+      let(:valid_session) { skip("Add valid session creds") }
 
       it "should redirects to practice" do
-        get :show, id: practice.id
+        get :show, id: practice.id, session: valid_session
+        puts response
         expect(response).to be_successful
         expect(assigns(:attendees)).to eq([attendee])
       end
