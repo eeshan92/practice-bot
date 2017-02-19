@@ -11,7 +11,7 @@
 
   <ul class="nav navbar-right top-nav">
 
-    <li class="dropdown">
+<!--     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
       <ul class="dropdown-menu alert-dropdown">
         <li>
@@ -37,30 +37,7 @@
           <a href="#">View All</a>
         </li>
       </ul>
-    </li>
-
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-        <i class="fa fa-user"></i>
-        <%= current_user.email %>
-        <b class="caret"></b>
-      </a>
-      <ul class="dropdown-menu">
-          <li>
-            <%= link_to "Profile" , users_show_path, :class => "fa fa-fw fa-user"%>
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-          </li>
-          <li>
-            <%= link_to "Settings" , users_edit_path, :class => "fa fa-fw fa-gear"%>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :class => "fa fa-fw fa-power-off" %>
-          </li>
-      </ul>
-    </li>
+    </li> -->
   </ul>
 
   <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -70,11 +47,13 @@
           <i class="fa fa-fw fa-bar-chart-o"></i>Practices
         <% end %>
       </li>
+
       <li>
         <%= link_to players_path do %>
           <i class="fa fa-fw fa-table"></i>Players
         <% end %>
       </li>
+
       <li>
         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Attendance <i class="fa fa-fw fa-caret-down"></i></a>
           <ul id="demo" class="collapse">
@@ -90,15 +69,31 @@
             </li>
           </ul>
       </li>
+
       <li>
         <%= link_to locations_path do %>
           <i class="fa fa-fw fa-file"></i>Locations
         <% end %>
       </li>
+
       <li>
         <%= link_to slack_bots_path do %>
           <i class="fa fa-fw fa-file"></i>Slack Bot
         <% end %>
+      </li>
+
+      <li>
+        <%= link_to "Profile" , users_show_path, :class => "fa fa-fw fa-user"%>
+      </li>
+
+      <li>
+        <%= link_to "Settings" , users_edit_path, :class => "fa fa-fw fa-gear"%>
+      </li>
+
+      <li class="divider"></li>
+
+      <li>
+        <%= link_to 'Sign out', destroy_user_session_path, :method => :delete, :class => "fa fa-fw fa-power-off" %>
       </li>
     </ul>
   </div>
