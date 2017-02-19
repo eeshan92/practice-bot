@@ -21,7 +21,6 @@
           <tr>
             <th><%= sortable "full_name", "Name" %></th>
             <th><%= sortable "handle", "Handle" %></th>
-            <th><%= sortable "gender", "Gender" %></th>
             <th>% Attendance</th>
           </tr>
         </thead>
@@ -30,7 +29,6 @@
             <tr>
               <td><%= player.full_name %>
               <td><%= player.handle %></td>
-              <td><%= player.gender %></td>
               <td><%= player.attendance_record(@after) %></td>
             </tr>
           <% end %>
