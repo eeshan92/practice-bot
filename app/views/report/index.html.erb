@@ -27,7 +27,7 @@
           <% @players.each do |player| %>
             <tr>
               <td><%= player.full_name %>
-              <td><%= player.attendance_record(@after) %></td>
+              <td><%= player.attendance_record(@attendances[player.id.to_s] || []) %></td>
             </tr>
           <% end %>
         </tbody>

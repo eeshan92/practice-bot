@@ -1,12 +1,15 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update, :destroy]
-  before_action :set_after, only: [:index, :show]
   helper_method :sort_column, :sort_direction
 
   def index
-    @players = Player.includes(:attendances).
+    @players = Player.all.
                       order(sort_column + " " + sort_direction).
                       paginate(:page => params[:page])
+
+    @attendances = Attendance.includes(:practice).
+                      select { |att| att.practice.after? (params[:after] || Date.today.beginning_of_year) }.
+                      group_by { |att| att[:player_id] }
   end
 
   def show
@@ -69,9 +72,5 @@ class PlayersController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-    end
-
-    def set_after
-      @after = (params[:after] || Time.now.beginning_of_year)
     end
 end

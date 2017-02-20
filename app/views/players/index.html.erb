@@ -27,7 +27,7 @@
               <td><%= link_to player.full_name, player %>
               <td><%= player.handle %></td>
               <td><%= player.gender %></td>
-              <td><%= player.attendance_record(@after) %></td>
+              <td><%= player.attendance_record(@attendances[player.id]) %></td>
             </tr>
           <% end %>
         </tbody>

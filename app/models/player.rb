@@ -16,29 +16,29 @@ class Player < ApplicationRecord
   scope :NRIC, ->(nric) { where NRIC: nric }
   scope :email, ->(email) { where email: email}
 
-  def attendance_list(after_time)
-    self.attendances.where(practice_id: Practice.after(after_time))
-  end
-
-  def attendance_record(after)
-    list = attendance_list(after)
-    if list.present?
-      percentage = (list.select do |a|
+  def attendance_record(attendances = nil)
+    attendances ||= default_attendance_list
+    if attendances.present?
+      percentage = (attendances.select do |a|
         a.attend? || a.late? || a.other?
-      end.count * 100 / list.count)
+      end.count * 100 / attendances.count)
     else
       0
     end.to_s(:percentage, precision: 1)
   end
 
-  def attendance_breakdown(after)
-    list = attendance_list(after)
+  def attendance_breakdown(attendances = nil)
+    attendances ||= default_attendance_list
     {
-      "Attend" => list.attend.count,
-      "Skip" => list.skip.count,
-      "Pending" => list.pending.count,
-      "Late" => list.late.count,
-      "Others" => list.other.count
+      "Attend" => attendances.attend.count,
+      "Skip" => attendances.skip.count,
+      "Pending" => attendances.pending.count,
+      "Late" => attendances.late.count,
+      "Others" => attendances.other.count
     }
+  end
+
+  def default_attendance_list
+    Attendance.where(player_id: self.id)
   end
 end

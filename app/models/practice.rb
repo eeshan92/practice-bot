@@ -21,6 +21,10 @@ class Practice < ApplicationRecord
     where("date >= ?", date) if date.present?
   end
 
+  def after?(date)
+    self.date >= date.to_date
+  end
+
   def as_json(options={})
       super(:include => {
               :location => {
