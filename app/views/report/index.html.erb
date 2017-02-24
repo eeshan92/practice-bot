@@ -11,7 +11,8 @@
     <%= link_to 'Female', params.permit(:direction, :id, :sort, :after, :gender).merge(:gender => "female"),
         :class => "btn btn-info btn-sm" %>
     <%= link_to 'All', params.permit(:direction, :id, :sort, :after, :gender).merge(:gender => ""),
-        :class => "btn btn-warning btn-sm" %>
+        :class => "btn btn-warning btn-sm" %> | 
+    <%= link_to "Download CSV", report_index_path(format: "csv"), :class => "btn btn-primary btn-sm" %>
   </div>
   
   <div class="col-lg-8">

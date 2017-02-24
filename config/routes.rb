@@ -29,5 +29,5 @@ Rails.application.routes.draw do
     get 'callback'
   end
 
-  resources :report, only: :index
+  resources :report, only: [:index, :download]
 end
