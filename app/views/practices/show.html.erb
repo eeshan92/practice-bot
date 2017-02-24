@@ -63,6 +63,7 @@
           <tr>
             <th><%= sortable "players.full_name", "Player" %></th>
             <th><%= sortable "status", "Status" %></th>
+            <th>Reason</th>
             <th><%= sortable "confirm", "Confirm" %></th>
           </tr>
         </thead>
@@ -76,6 +77,7 @@
                     :as => :select, :collection => Attendance.statuses.keys.map {|k| [k,k] },
                     value: attendee.status %>
               </td>
+              <td><%= attendee.comment %></td>
               <td>
                 <%= best_in_place attendee, :confirm,
                     :as => :checkbox, collection: { false: "No", true: "Yes" },
