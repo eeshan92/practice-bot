@@ -36,7 +36,7 @@ class ReportController < ApplicationController
         "percent" => player.attendance_record(player_att),
         "attended" => player_att.select { |att| ["attend", "late", "other"].include? att.status }.count,
         "total" => player_att.count,
-        "comments" => player_att.pluck(:comment).select(&:presence).join(" | ")
+        "comments" => player_att.pluck(:comment).select(&:presence).join(", ")
       }
     end
 
