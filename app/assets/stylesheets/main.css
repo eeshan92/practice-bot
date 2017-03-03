@@ -242,3 +242,7 @@ a:visited.btn {
   padding-right: 30px;
   padding-top: 50px;
 }
+
+.panel-body {
+  padding: 25px;
+}
