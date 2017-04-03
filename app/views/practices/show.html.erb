@@ -83,7 +83,7 @@
                       value: attendee.status %>
                 </td>
               <% else %>
-                <td>attendee.status</td>
+                <td><%= attendee.status %></td>
               <% end %>  
               <td><%= attendee.comment %></td>
               <% if current_user.admin? %>
