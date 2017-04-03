@@ -15,4 +15,6 @@ class User < ApplicationRecord
       in: ["never enough"],
       message: "Invalid invite code"
     }
+
+  enum role: { player: 0, admin: 1 }
 end

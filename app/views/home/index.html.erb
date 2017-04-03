@@ -1,1 +1,43 @@
-<h1>WIP</h1>
+<div class="home-page">
+  <% @practices.each do |practice| %>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title" style="display: inline-block">
+              Details
+            </h3>
+            <% if current_user.admin? %>
+              <%= link_to 'Edit', edit_practice_path(practice), :style => "float: right; display: inline-block" %>
+            <% end %>
+          </div>
+          <div class="row panel-body">
+            <p>
+              <strong>Location:</strong>
+              <%= practice.location.name %>
+            </p>
+
+            <p>
+              <strong>Date:</strong>
+              <%= practice.date %>
+
+            <p>
+              <strong>Start:</strong>
+              <%= format_by_time(practice.start) %>
+            </p>
+
+            <p>
+              <strong>End:</strong>
+              <%= format_by_time(practice.end) %>
+            </p>
+
+            <p>
+              <strong>Status:</strong>
+              <%= practice.status %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

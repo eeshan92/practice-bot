@@ -5,7 +5,9 @@
         <h3 class="panel-title" style="display: inline-block">
           Details
         </h3>
+        <% if current_user.admin? %>
           <%= link_to 'Edit', edit_practice_path(@practice), :style => "float: right; display: inline-block" %>
+        <% end %>
       </div>
       <div class="row panel-body">
         <p>
@@ -64,7 +66,9 @@
             <th><%= sortable "players.full_name", "Player" %></th>
             <th><%= sortable "status", "Status" %></th>
             <th>Reason</th>
-            <th><%= sortable "confirm", "Confirm" %></th>
+            <% if current_user.admin? %>
+              <th><%= sortable "confirm", "Confirm" %></th>
+            <% end %>
           </tr>
         </thead>
 
@@ -72,17 +76,23 @@
           <% @attendees.each do |attendee| %>
             <tr>
               <td><%= attendee.player.full_name %></td>
-              <td>
-                <%= best_in_place attendee, :status,
-                    :as => :select, :collection => Attendance.statuses.keys.map {|k| [k,k] },
-                    value: attendee.status %>
-              </td>
+              <% if current_user.admin? %>
+                <td>
+                  <%= best_in_place attendee, :status,
+                      :as => :select, :collection => Attendance.statuses.keys.map {|k| [k,k] },
+                      value: attendee.status %>
+                </td>
+              <% else %>
+                <td>attendee.status</td>
+              <% end %>  
               <td><%= attendee.comment %></td>
-              <td>
-                <%= best_in_place attendee, :confirm,
-                    :as => :checkbox, collection: { false: "No", true: "Yes" },
-                    value: attendee.confirm %>
-              </td>
+              <% if current_user.admin? %>
+                <td>
+                  <%= best_in_place attendee, :confirm,
+                      :as => :checkbox, collection: { false: "No", true: "Yes" },
+                      value: attendee.confirm %>
+                </td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>

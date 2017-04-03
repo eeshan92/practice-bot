@@ -7,7 +7,9 @@
   
   <div class="col-lg-8">
     <span>
-      <%= link_to 'New Practice', new_practice_path %>
+      <% if current_user.admin? %>
+        <%= link_to 'New Practice', new_practice_path %>
+      <% end %>
       <%= will_paginate @practices %>
     </span>
 
@@ -19,7 +21,9 @@
             <th><%= sortable "location_id", "Location" %></th>
             <th><%= sortable "start", "Time" %></th>
             <th><%= sortable "status", "Status" %></th>
-            <th></th>
+            <% if current_user.admin? %>
+              <th></th>
+            <% end %>
           </tr>
         </thead>
 
@@ -32,7 +36,9 @@
               <td class=<%= "practice-#{practice.status}"%> >
                 <%= practice.status %>
               </td>
-              <td><%= link_to 'Edit', edit_practice_path(practice) %></td>
+              <% if current_user.admin? %>
+                <td><%= link_to 'Edit', edit_practice_path(practice) %></td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
