@@ -17,4 +17,6 @@ class User < ApplicationRecord
     }
 
   enum role: { player: 0, admin: 1 }
+
+  has_one :player
 end

@@ -1,11 +1,11 @@
 <div class="home-page">
   <% @practices.each do |practice| %>
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-4">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title" style="display: inline-block">
-              Details
+              <%= format_day(practice.date) %>
             </h3>
             <% if current_user.admin? %>
               <%= link_to 'Edit', edit_practice_path(practice), :style => "float: right; display: inline-block" %>
@@ -13,13 +13,14 @@
           </div>
           <div class="row panel-body">
             <p>
-              <strong>Location:</strong>
-              <%= practice.location.name %>
+              <strong>Status:</strong>
+              <%= Attendance.where(player: current_user.player, practice_id: practice.id).try(:first).try(:status) || "none" %>
             </p>
 
             <p>
-              <strong>Date:</strong>
-              <%= practice.date %>
+              <strong>Location:</strong>
+              <%= "#{practice.location.name} (#{practice.location.address})" %>
+            </p>
 
             <p>
               <strong>Start:</strong>
@@ -31,10 +32,12 @@
               <%= format_by_time(practice.end) %>
             </p>
 
-            <p>
-              <strong>Status:</strong>
-              <%= practice.status %>
-            </p>
+            <div class="attendance-options">
+              <%= link_to 'Attend', {}, { :class => "btn btn-success btn-sm" }%>
+              <%= link_to 'Late', {}, { :class => "btn btn-warning btn-sm" } %>
+              <%= link_to 'Others', {}, { :class => "btn btn-primary btn-sm" } %>
+              <%= link_to 'Skip', {}, { :class => "btn btn-danger btn-sm" } %>
+            </div>
           </div>
         </div>
       </div>

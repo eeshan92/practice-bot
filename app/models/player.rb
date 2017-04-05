@@ -4,6 +4,8 @@ class Player < ApplicationRecord
 
   has_many :attendances
 
+  belongs_to :user
+
   validates :full_name, presence: true
 
   enum gender: { male: 0, female: 1 }

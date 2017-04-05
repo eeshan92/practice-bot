@@ -8,6 +8,10 @@ module DateHelper
   end
 
   def format_by_time(date)
-    date.strftime("%l:%M %p") if date.present?
+    date.in_time_zone("Singapore").strftime("%l:%M %p") if date.present?
+  end
+
+  def format_day(date)
+    date.strftime("%-d %b (%a)") if date.present?
   end
 end
