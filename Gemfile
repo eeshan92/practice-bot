@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-# Use sqlite3 as the database for Active Record
 gem 'pg'
-# Use Puma as the app server
 gem 'puma', '~> 3.0'
+
+gem 'rb-readline'
 # Use SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sass-rails', '~> 5.0'
@@ -43,6 +43,8 @@ gem 'daemons'
 
 # REST client
 gem 'rest-client'
+
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 
 group :test do
   gem 'database_cleaner'

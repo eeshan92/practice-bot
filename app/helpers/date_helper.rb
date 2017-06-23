@@ -14,4 +14,12 @@ module DateHelper
   def format_day(date)
     date.strftime("%-d %b (%a)") if date.present?
   end
+
+  def month(date)
+    date.strftime("%b") if date.present?
+  end
+
+  def date_digit(date)
+    date.strftime("%-d") if date.present?
+  end
 end

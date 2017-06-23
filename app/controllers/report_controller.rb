@@ -5,6 +5,14 @@ class ReportController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
+    Analytics.page(
+      user_id: current_user.id,
+      category: 'Report',
+      name: 'Attendance Report',
+      properties: {
+        environment: Rails.env
+      })
+
     @players = Player.all.
                       filter(params.slice(:full_name, :gender)).
                       order(sort_column + " " + sort_direction).
