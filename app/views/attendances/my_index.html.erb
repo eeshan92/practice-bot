@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-lg-8">
+    <div class="table-responsive">
+      <% @attendances.each do |attendance| %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <div class="col-sm-2 left date">
+              <p class="month">
+                <%= month(attendance.practice.date) %>
+              </p>
+              <h2 class = "date_digit">
+                <%= date_digit(attendance.practice.date) %>
+              </h2>
+            </div>
+            <div class="col-sm-10 details">
+              <div class="row">
+                <p>
+                  <span class="practice_type">Track</span>
+                  <span class="practice_attending">
+                    <%= @attendances.select do |a|
+                      a.attend? || a.late? || a.other?
+                    end.count %> attending
+                  </span>
+                </p>
+              </div>
+              <div class="row">
+                <p>
+                  <%= format_by_time(attendance.practice.start) %> - <%= format_by_time(attendance.practice.end) %>
+                </p>
+                <p>
+                  <%= attendance.practice.location.name %> (<%= attendance.practice.location.address %>)
+                </p>
+              </div>
+              <div class="row options">
+                <div class="col-sm-3">
+                  <%= form_for attendance, method: :put do |a| %>
+                    <%= a.hidden_field :status, { value: "attend" } %>
+                    <%= a.submit 'Attend', class: "btn attendance_button" %>
+                  <% end %>
+                </div>
+                <div class="col-sm-3">
+                  <%= form_for attendance, method: :put do |a| %>
+                    <%= a.hidden_field :status, { value: "late" } %>
+                    <%= a.submit 'Late', class: "btn attendance_button" %>
+                  <% end %>
+                </div>
+                <div class="col-sm-3">
+                  <%= form_for attendance, method: :put do |a| %>
+                    <%= a.hidden_field :status, { value: "other" } %>
+                    <%= a.submit 'Other', class: "btn attendance_button" %>
+                  <% end %>
+                </div>
+                <div class="col-sm-3">
+                  <%= form_for attendance, method: :put do |a| %>
+                    <%= a.hidden_field :status, { :value => "skip" } %>
+                    <%= a.submit 'Skipping', class: "btn attendance_button" %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

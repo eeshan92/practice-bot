@@ -3,6 +3,7 @@ class Practice < ApplicationRecord
 
   belongs_to :location
   has_many :attendances
+  has_many :players, :through => :attendances
 
   validates :start, :presence => true
   validates :date, date: { allow_blank: false }, :uniqueness => true

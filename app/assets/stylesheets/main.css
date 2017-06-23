@@ -240,9 +240,51 @@ a:visited.btn {
 .main-body {
   padding-left: 30px;
   padding-right: 30px;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 
 .panel-body {
-  padding: 25px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 0px;
+}
+
+.month {
+  color: #e10a0a;
+  margin: 0px;
+}
+
+.date { 
+  text-align: center;
+  height: 100%;
+}
+
+.details {
+  border-left: 1px solid #ccc;
+}
+
+.details > .row {
+  margin-left: 0px;
+}
+
+.date_digit {
+  margin: 0px;
+}
+
+.practice_type {
+  text-align: left;
+  font-weight: bold;
+}
+
+.practice_attending {
+  float: right;
+  color: #1BCE73;
+}
+
+.attendance_button {
+  width: 100%;
+}
+
+.options > div {
+  padding-top: 5px;
 }

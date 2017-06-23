@@ -7,6 +7,10 @@ class AttendancesController < ApplicationController
                               order(sort_column + " " + sort_direction).paginate(:page => params[:page])
   end
 
+  def my_index
+    @attendances = Attendance.includes(:practice, :player).order("practices.date desc").where(player: current_user.player)
+  end
+
   def show
   end
 
@@ -22,6 +26,7 @@ class AttendancesController < ApplicationController
 
     respond_to do |format|
       if @attendance.save
+        analytics_track("Created attendance")
         format.html { redirect_to @attendance, notice: 'Attendance was successfully created.' }
         format.json { render :show, status: :created, location: @attendance }
       else
@@ -34,7 +39,8 @@ class AttendancesController < ApplicationController
   def update
     respond_to do |format|
       if @attendance.update(attendance_params)
-        format.html { redirect_to @attendance, notice: 'Attendance was successfully updated.' }
+        analytics_track("Updated attendance")
+        format.html { redirect_to :back, notice: 'Attendance was successfully updated.' }
         format.json { render :show, status: :ok, location: @attendance }
       else
         format.html { render :edit }
@@ -66,5 +72,18 @@ class AttendancesController < ApplicationController
 
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def analytics_track(event)
+      Analytics.track(
+        user_id: current_user.id,
+        event: event,
+        properties: {
+          status: @attendance.status,
+          practice_id: @attendance.practice_id,
+          player_id: @attendance.player_id,
+          comment: @attendance.comment,
+          environment: Rails.env
+        })
     end
 end

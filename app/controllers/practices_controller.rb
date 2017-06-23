@@ -4,7 +4,7 @@ class PracticesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def index
-    @practices = Practice.includes(:location).
+    @practices = Practice.includes(:location, :attendances).
                           order(sort_column + " " + sort_direction).
                           paginate(:page => params[:page])
   end
@@ -70,7 +70,7 @@ class PracticesController < ApplicationController
     end
 
     def sort_column
-      Practice.column_names.include?(params[:sort]) ? params[:sort] : "id"
+      Practice.column_names.include?(params[:sort]) ? params[:sort] : "date"
     end
 
     def sort_direction

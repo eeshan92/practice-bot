@@ -3,6 +3,7 @@ class Player < ApplicationRecord
   attr_accessor :attendance_record
 
   has_many :attendances
+  has_many :practices, :through => :attendances
 
   belongs_to :user
 

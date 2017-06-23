@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :players, :locations
 
   resources :practices
+  get 'attendances/me', to: 'attendances#my_index'
   resources :attendances
 
   get 'users/edit'
