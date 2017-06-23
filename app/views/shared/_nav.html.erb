@@ -22,9 +22,19 @@
       </li>
 
       <li>
-        <%= link_to report_index_path do %>
-          <i class="fa fa-fw fa-bar-chart-o"></i>Report
-        <% end %>
+        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Attendance <i class="fa fa-fw fa-caret-down"></i></a>
+          <ul id="demo" class="collapse">
+            <li>
+              <%= link_to attendances_me_path do %>
+                <i class="fa fa-fw fa-table"></i>Me
+              <% end %>
+            </li>
+            <li>
+              <%= link_to report_index_path do %>
+                <i class="fa fa-fw fa-bar-chart-o"></i>Report
+              <% end %>
+            </li>
+          </ul>
       </li>
 
       <li>

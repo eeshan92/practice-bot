@@ -59,7 +59,12 @@
           <ul id="demo" class="collapse">
             <li>
               <%= link_to attendances_path do %>
-                <i class="fa fa-fw fa-table"></i>List
+                <i class="fa fa-fw fa-table"></i>All
+              <% end %>
+            </li>
+            <li>
+              <%= link_to attendances_me_path do %>
+                <i class="fa fa-fw fa-table"></i>Me
               <% end %>
             </li>
             <li>
