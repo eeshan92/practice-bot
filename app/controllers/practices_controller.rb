@@ -70,7 +70,7 @@ class PracticesController < ApplicationController
     end
 
     def sort_column
-      Practice.column_names.include?(params[:sort]) ? params[:sort] : "date"
+      Practice.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
 
     def sort_direction

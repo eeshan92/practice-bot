@@ -3,17 +3,16 @@
     <div class="table-responsive">
       <% @attendances.each do |attendance| %>
         <div class="panel panel-default">
-          <div class="panel-body">
-
-            <div class="col-sm-2 left date">
-              <p class="month">
+          <div class="panel-body row">
+            <div class="col-sm-3 left date">
+              <div class="row month">
                 <%= month(attendance.practice.date) %>
-              </p>
-              <h2 class = "date_digit">
+              </div>
+              <div class="row date_digit">
                 <%= date_digit(attendance.practice.date) %>
-              </h2>
+              </div>
             </div>
-            <div class="col-sm-10 details">
+            <div class="col-sm-9 details">
               <div class="row">
                 <p>
                   <span class="practice_type">Track</span>
