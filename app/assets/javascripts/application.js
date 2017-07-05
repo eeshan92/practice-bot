@@ -18,6 +18,8 @@
 //= require Chart.bundle
 //= require chartkick
 //= require best_in_place
+//= require my_index
+//= require google_analytics
 //= require_tree .
 
 $(document).ready(function() {
